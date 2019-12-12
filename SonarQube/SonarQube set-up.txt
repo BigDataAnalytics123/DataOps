@@ -1,0 +1,36 @@
+#Update packages
+sudo yum update -y
+#Install docker
+sudo yum install -y docker
+#Add user to the docker group to  avoid using sudo
+sudo usermod -a -G docker ec2-user
+#Install docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose > /dev/null
+#Add execute permissions
+sudo chmod +x /usr/local/bin/docker-compose
+#Start docker daemon
+sudo service docker start
+#Enable start of docker daemon on reboot
+sudo chkconfig docker on
+#Restart machine
+#Place the docker-compose file (docker-compose.yml) in /home/$user directory
+#Execute docker-compose to launch containers
+docker-compose up -d
+#Check docker images
+docker images
+#Check docker processes
+docker ps -a
+#Launch Web UI for SonarQube
+http://<Public IP address of Amazon Linux instance>:9000
+#Login using admin/admin as userid/password
+#Download sonar-scanner on local machine based on OS
+#Add /bin folder to PATH environment variable. Check using following
+sonar-scanner h
+#Update /conf/sonar-scanner.properties file
+sonar.host.url=http://<Public IP address of Amazon Linux instance>:9000
+#Create sonar-project.properties file in root folder of proejct to be analyzed
+sonar.projectKey=1_0
+sonar.projectName=SonarTest
+sonar.projectVersion=1.0
+sonar.sources=.
+#Check analysis results on Web UI
