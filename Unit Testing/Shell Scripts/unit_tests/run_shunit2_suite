@@ -1,0 +1,13 @@
+#! /bin/sh
+echo "================================"
+echo "Running first file"
+echo "================================"
+shunit2 testpass.sh
+echo "================================"
+echo "Running second file"
+echo "================================"
+shunit2 testfail.sh
+echo "================================"
+echo "Running third file"
+echo "================================"
+shunit2 testgeneral.sh

@@ -1,0 +1,10 @@
+#Ubuntu machine
+
+#Update packages
+sudo apt-get update -y
+
+#Install shunit2
+sudo apt-get install shunit2
+
+#Usage
+shunit2 <unit test file>
