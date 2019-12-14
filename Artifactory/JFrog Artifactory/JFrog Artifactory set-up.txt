@@ -1,0 +1,17 @@
+#Update packages
+sudo yum update -y
+#Install docker
+sudo yum install -y docker
+#Add user to the docker group to  avoid using sudo
+sudo usermod -a -G docker ec2-user
+#Start docker daemon
+sudo service docker start
+#Pull docker image
+sudo docker pull docker.bintray.io/jfrog/artifactory-oss:latest
+#Check docker images
+sudo docker images 
+#Run docker container (use ulimit to set number of files to higher value, default is 1024 which is not enough)
+sudo docker run --name artifactory --ulimit nofile=90000:90000 -p 8081:8081 docker.bintray.io/jfrog/artifactory-oss:latest
+#Launch Web UI for Artifactory
+http://<Public IP address of Amazon Linux instance>:8081
+#Login using admin/password as userid/password
