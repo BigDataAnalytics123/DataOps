@@ -1,0 +1,19 @@
+#Update packages
+sudo yum update -y
+#Install docker
+sudo yum install docker -y
+#Add user to the docker group to  avoid using sudo
+sudo usermod -a -G docker ec2-user
+#Start docker daemon
+sudo service docker start
+#Enable start of docker daemon on reboot
+sudo chkconfig docker on
+#Restart machine
+#Create/place dockerfile in /home/$user directory
+#Build image using dockerfile
+docker build .
+#Check docker images
+docker images
+#Run docker image to create container
+docker run -p 8888:8888 <image id>
+#Pick the url from console, replace localhost IP with the IP of remote machine on which container is running and run in browser. The jupyter notebook will open up. Write and execute ML models here
